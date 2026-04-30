@@ -1,0 +1,800 @@
+/*
+ * front-end-ENTELECHY — local CSS overrides
+ * This file bridges the gap between the WordPress-served styles
+ * and the standalone HTML file. All design comes from the original
+ * theme stylesheets loaded via CDN; this file only handles
+ * things that WordPress or Elementor would normally do via JS/PHP.
+ */
+
+/* =========================================
+   ELEMENTOR LAYOUT & BACKGROUND OVERRIDES
+   ========================================= */
+
+/* The Elementor wrapper was setting the body/overall background */
+body {
+  background-color: #ffffff;
+  color: #01042F;
+  /* Default to dark since most sections are now white */
+}
+
+/* =========================================
+   ELECTRIC BLUE DESIGN SYSTEM
+   ========================================= */
+:root {
+  --calcite-blue: #007AC2;
+  --calcite-blue-hover: #00619B;
+  --electric-blue-vertical: linear-gradient(180deg, #00FFFF 0%, #00a2ff 50%, #0000FF 100%);
+  --electric-blue-text: linear-gradient(180deg, #00FFFF 0%, #00a2ff 50%, #0000FF 100%);
+}
+
+/* Specific section backgrounds that were dropped */
+#at-hero3 {
+  background: radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.15) 0%, rgba(0, 122, 194, 0.05) 40%, #000000 70%) !important;
+  background-color: #000000 !important;
+  height: 100vh !important;
+  min-height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+}
+
+#hero-bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.45; /* 'Bit transparent' as requested, blending with black bg */
+  pointer-events: none;
+}
+
+.at-hero3-content {
+  width: 100%;
+}
+
+/* Hide ONLY the unwanted glowing shapes — NOT shape1 (flash lines) */
+.at-hr3-shape2,
+.at-hr3-shape3,
+[class*="at-btn"]::before,
+[class*="at-btn"]::after,
+.ra-btn-bg {
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.at-hr3-shape1 {
+  width: 100% !important;
+  height: 100% !important;
+  right: 0 !important;
+  left: 0 !important;
+  top: 0 !important;
+  mix-blend-mode: screen !important;
+  opacity: 0.85 !important;
+  z-index: 1 !important;
+  /* behind the robot (z-index: 2) */
+  pointer-events: none;
+  position: absolute !important;
+}
+
+.at-hr3-shape1 img,
+.at-hr3-shape1 canvas {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  /* ensure it fills the 50% width/100% height without stretching */
+}
+
+/* Flash lines sit behind everything via z-index on the hero item context */
+.at-hero3-item {
+  isolation: isolate;
+}
+
+/* The content wrapper (text + robot) sits above the flash lines */
+.at-hero3-item>.container,
+.at-hero3-item-wrap {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* ENTELECHY watermark: white, left-aligned */
+.at-bottom-text.at-slider-letter {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  background-clip: initial !important;
+  -webkit-background-clip: initial !important;
+  opacity: 0.18 !important;
+  position: absolute !important;
+  bottom: -10px !important;
+  left: -20px !important;
+  /* pushed to left */
+  width: auto !important;
+  text-align: left !important;
+  font-size: clamp(80px, 15vw, 220px) !important;
+  font-weight: 900 !important;
+  letter-spacing: -5px !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+#at-hero3 h1,
+#at-hero3 h2,
+#at-hero3 h3,
+#at-hero3 h4,
+#at-hero3 p,
+#at-hero3 a {
+  color: #ffffff !important;
+}
+
+/* Single Dark Blue Color for Hero Text */
+.hero3_title span {
+  background: none !important;
+  -webkit-text-fill-color: #0044CC !important;
+  color: #0044CC !important;
+  display: inline-block;
+  font-weight: 700;
+}
+
+/* =========================================
+   ENTELECHY GHOST BUTTON (Transparent Vibe)
+   ========================================= */
+.synex-ghost-btn {
+  display: inline-block !important;
+  background: transparent !important;
+  border: 1px solid #0044CC !important;
+  border-radius: 0 !important; /* Sharp corners */
+  color: #0044CC !important;
+  padding: 15px 35px !important;
+  position: relative;
+  z-index: 10;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(2px);
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.synex-ghost-btn:hover {
+  background: #0044CC !important;
+  color: #ffffff !important;
+  border-color: #0044CC !important;
+  box-shadow: 0 0 15px rgba(0, 68, 204, 0.4);
+}
+
+/* =========================================
+   ENTELECHY GLASS BUTTON (Whitish/Glassy)
+   ========================================= */
+.synex-glass-btn {
+  display: inline-block !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  border-radius: 4px !important;
+  color: #ffffff !important;
+  padding: 15px 35px !important;
+  position: relative;
+  z-index: 10;
+  transition: all 0.3s ease !important;
+  backdrop-filter: blur(10px);
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  font-size: 15px;
+  cursor: pointer;
+  text-decoration: none !important;
+  box-shadow: 0 4px 15px rgba(1, 0, 72, 0.4); /* #010048 shadow */
+}
+
+.synex-glass-btn:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  color: #010048 !important;
+  border-color: #ffffff !important;
+  box-shadow: 0 8px 25px rgba(1, 0, 72, 0.6);
+}
+
+/* =========================================
+   CLEAN CALCITE BUTTONS (No Glow/Purple)
+   ========================================= */
+
+.at-btn1 a,
+.at-btn2 a,
+.at-btn3 a,
+.at-btn-c a {
+  background: var(--electric-blue-vertical) !important;
+  background-image: var(--electric-blue-vertical) !important;
+  border: none !important;
+  border-radius: 2px !important;
+  /* Sharp Calcite precision */
+  color: #ffffff !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 10px 24px !important;
+  font-weight: 700 !important;
+  font-size: 15px !important;
+  font-family: inherit !important;
+  transition: all 0.2s ease-in-out !important;
+  height: 44px !important;
+  width: auto !important;
+  text-decoration: none !important;
+  text-transform: none !important;
+  position: relative !important;
+  box-shadow: none !important;
+  /* Killer of purple shadows */
+  outline: none !important;
+}
+
+/* Kill ALL pseudo-layers and theme glows globally */
+[class*="at-btn"]::before,
+[class*="at-btn"]::after,
+[class*="at-btn"] a::before,
+[class*="at-btn"] a::after,
+.at-btn3 a .icon-wrap,
+.at-btn3 a .text-wrap b:last-child {
+  display: none !important;
+  background: none !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+/* Hover: Inverse contrast */
+.at-btn1 a:hover,
+.at-btn2 a:hover,
+.at-btn3 a:hover {
+  background: #ffffff !important;
+  color: #01042F !important;
+  border: 1px solid #00FFFF !important;
+}
+
+/* Secondary/Outline variant (using Cyan as requested for theme) */
+.at-btn2 a {
+  background: #ffffff !important;
+  border: 1px solid var(--calcite-blue) !important;
+  color: var(--calcite-blue) !important;
+}
+
+.at-btn2 a:hover {
+  background: #f3f3f3 !important;
+  color: var(--calcite-blue-hover) !important;
+}
+
+/* Simplify text display */
+.at-btn3 a span,
+.at-btn3 a b:first-child {
+  display: inline-block !important;
+}
+
+/* =========================================
+   PURPLE GLOW KILLER — TARGET: .at-btn3 CONTAINER
+   The purple comes from the wrapper div, not the <a> tag
+   ========================================= */
+
+/* Nuke ALL styling on the outer button wrapper */
+.at-btn3,
+.at-btn2,
+.at-btn1 {
+  background: none !important;
+  background-image: none !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  filter: none !important;
+}
+
+/* Kill every pseudo-element on the wrapper */
+.at-btn3::before,
+.at-btn3::after,
+.at-btn2::before,
+.at-btn2::after,
+.at-btn1::before,
+.at-btn1::after {
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+}
+
+/* Ensure header CTA matches */
+.at-header-section .ra-header-action .at-btn3 a {
+  padding: 8px 20px !important;
+  font-size: 14px !important;
+}
+
+.at-ftr3-cta {
+  background-image: var(--electric-blue-vertical) !important;
+  background-color: transparent !important;
+}
+
+.at-ftr3-cta:before {
+  background: linear-gradient(90deg, rgba(0, 255, 255, 0.2) 0%, rgba(0, 0, 255, 0) 100%) !important;
+}
+
+/* =========================================
+   GLOBAL PURPLE → ELECTRIC BLUE OVERRIDE
+   ========================================= */
+
+/* Section subtitle labels */
+.subtitle,
+.at-sec-title2 .subtitle {
+  color: #007AC2 !important;
+  border-color: #007AC2 !important;
+}
+
+/* Accent highlights - converts any lingering purple inline styles */
+[style*="#A234FD"],
+[style*="162, 52, 253"] {
+  color: #00FFFF !important;
+}
+
+/* Service icon backgrounds */
+[class*="icon-bg"],
+[class*="sv3-icon"],
+[class*="ser3-icon"],
+[class*="at-sv3"] i,
+[class*="at-ser3"] i {
+  background: linear-gradient(135deg, #007AC2, #00FFFF) !important;
+  color: #ffffff !important;
+}
+
+/* Social icons in hero */
+.at-hero3-social a {
+  border-color: rgba(0, 255, 255, 0.3) !important;
+  color: #00FFFF !important;
+}
+
+.at-hero3-social a:hover {
+  background: #007AC2 !important;
+  color: #ffffff !important;
+}
+
+/* CTA section tag */
+.at-ftr3-subtitle {
+  color: #00FFFF !important;
+  background: rgba(0, 255, 255, 0.1) !important;
+}
+
+/* Footer links */
+.at-ftr2-menu a,
+.menu-widget a {
+  color: #01042F !important;
+}
+
+.at-ftr2-menu a:hover,
+.menu-widget a:hover {
+  color: #007AC2 !important;
+}
+
+/* Stats/counters */
+.at-why-c3-item h3 {
+  color: #007AC2 !important;
+  -webkit-text-fill-color: #007AC2 !important;
+}
+
+/* =========================================
+   SURGICAL PURPLE PURGE
+   Precise overrides for every #A234FD selector
+   found in the external theme CSS
+   ========================================= */
+
+/* Section subtitle labels */
+.at-sec-title2 .subtitle {
+  color: #007AC2 !important;
+  background: linear-gradient(90deg, rgba(0, 122, 194, 0.15) 0%, rgba(0, 122, 194, 0) 100%) !important;
+}
+
+/* About / stats superscript counters */
+.at-ab1-count-item .item-count h3 sub {
+  color: #007AC2 !important;
+}
+
+/* Service item inner link */
+.at-ser1-item .inner-link a {
+  color: #007AC2 !important;
+}
+
+/* Team item 3 text span */
+.at-tm1-item:nth-child(3) .item-text span {
+  color: #007AC2 !important;
+}
+
+/* Team item 4 image before overlay */
+.at-tm1-item:nth-child(4) .item-img:before {
+  background-color: #007AC2 !important;
+}
+
+/* Testimonial item hover author name */
+.at-testi2-item .at-testi2-hover .hover-text .item-author span {
+  color: #007AC2 !important;
+}
+
+/* Testimonial item hover star rating */
+.at-testi2-item .at-testi2-hover .hover-text .item-rate li {
+  background-color: #007AC2 !important;
+}
+
+/* CTA subtitle tag */
+.at-ftr3-cta .at-ftr3-subtitle {
+  color: #00FFFF !important;
+  background: rgba(0, 255, 255, 0.12) !important;
+}
+
+/* Any element with direct purple background */
+[class*="at-"] [style*="#A234FD"],
+[class*="at-"] [style*="background-color: #A234FD"],
+[class*="at-"] [style*="background:#A234FD"] {
+  background-color: #007AC2 !important;
+  color: #ffffff !important;
+}
+
+/* Any inline stop-color purple in embedded SVGs */
+/* Note: SVG gradients with stop-color cannot be overridden via CSS selectors;
+   handled via filter hue-rotate on specific containers below */
+
+/* Hue-rotate all embedded SVG icon fills from purple to blue */
+.at-tm1-item:nth-child(3) svg,
+.at-tm1-item:nth-child(4) svg,
+.at-testi2-item svg,
+[class*="at-ser1"] svg {
+  filter: hue-rotate(-50deg) saturate(1.5) !important;
+}
+
+/* Fix for .img-cover ensuring images function as background */
+.img-cover {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.img-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Apply data-background images via CSS (Elementor does this via JS) */
+#at-about3[data-background] {
+  background-image: url('https://themexriver.com/wp/aitechfy/wp-content/uploads/2025/09/ab-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-color: #ffffff;
+}
+
+#at-price3[data-background] {
+  background-image: url('https://themexriver.com/wp/aitechfy/wp-content/uploads/2025/09/pr-bg2.webp');
+  background-size: cover;
+  background-position: center;
+  background-color: #ffffff;
+}
+
+#at-client3 {
+  background-color: #ffffff;
+}
+
+#at-testi3[data-background] {
+  background-image: url('https://themexriver.com/wp/aitechfy/wp-content/uploads/2025/09/test-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-color: #ffffff;
+}
+
+#at-blog3 {
+  background-color: #ffffff;
+}
+
+/* Targeted text colors for sections with white background */
+.at-about3-sec,
+.at-price3-sec,
+.at-testi3-sec,
+.at-blog3-sec,
+.at-client3-sec,
+.at-why-c3-sec,
+.at-award3-sec,
+.at-project3-content {
+  color: #01042F;
+}
+
+.at-about3-sec .sec_title,
+.at-price3-sec .sec_title,
+.at-testi3-sec .sec_title,
+.at-blog3-sec .sec_title,
+.at-client3-sec .sec_title,
+.at-why-c3-sec .sec_title,
+.at-award3-sec .sec_title,
+.at-award3-sec h1,
+.at-award3-sec h2,
+.at-award3-sec h3,
+.at-award3-sec h4 {
+  color: #01042F !important;
+}
+
+.at-about3-sec p,
+.at-price3-sec p,
+.at-testi3-sec p,
+.at-blog3-sec p,
+.at-client3-sec p,
+.at-why-c3-sec p {
+  color: #555555;
+}
+
+/* Ensure Footer and CTA maintain visibility if backgrounds differ */
+.at-ftr3-content,
+.at-ftr3-cta {
+  color: #01042F;
+}
+
+.at-ftr3-content p,
+.at-ftr3-content a,
+.at-ftr3-content h3 {
+  color: #ffffff !important;
+  /* Footer has dark background image */
+}
+
+
+/* =========================================
+   UTILITIES & TYPOGRAPHY TWEAKS
+   ========================================= */
+
+/* Hide utility class used by pricing toggle */
+.hide {
+  display: none !important;
+}
+
+/* Missing Elementor CSS for Section Titles */
+.at-sec-title2 .sec_title {
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 1.13;
+  letter-spacing: -2px;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px) {
+  .at-sec-title2 .sec_title {
+    font-size: 40px;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 575px) {
+  .at-sec-title2 .sec_title {
+    font-size: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .at-sec-title2 .sec_title {
+    font-size: 30px;
+  }
+}
+
+@media (max-width: 360px) {
+  .at-sec-title2 .sec_title {
+    font-size: 28px;
+  }
+}
+
+.at-sec-title2 p {
+  padding-top: 20px;
+}
+
+/* Missing Elementor CSS for Footer CTA */
+.at-ftr3-cta .at-ftr3-subtitle {
+  color: #00FFFF;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 5px 12px;
+  margin-bottom: 25px;
+  border-radius: 4px;
+  display: inline-block;
+  background: rgba(0, 255, 255, 0.1);
+}
+
+.at-ftr3-cta h2 {
+  color: #01042F;
+  margin: 0 auto;
+  line-height: 0.88;
+  font-size: 160px;
+  font-weight: 800;
+  max-width: 750px;
+  letter-spacing: -6px;
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px),
+only screen and (min-width: 481px) and (max-width: 575px) {
+  .at-ftr3-cta h2 {
+    font-size: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .at-ftr3-cta h2 {
+    font-size: 60px;
+  }
+}
+
+.at-ftr3-cta .cta-link {
+  z-index: 2;
+  position: relative;
+  margin-top: -40px;
+  -webkit-transform: rotate(-4deg);
+  transform: rotate(-4deg);
+}
+
+@media only screen and (min-width: 576px) and (max-width: 767px),
+only screen and (min-width: 481px) and (max-width: 575px),
+(max-width: 480px) {
+  .at-ftr3-cta .cta-link {
+    margin-top: 0;
+  }
+}
+
+.at-ftr3-cta .cta-link a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  gap: 20px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  color: var(--at-black1);
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 auto;
+  letter-spacing: -1px;
+  background-color: var(--at-green1);
+  -webkit-transition: 300ms all ease-in-out;
+  transition: 300ms all ease-in-out;
+}
+
+.at-ftr3-cta .cta-link a:hover {
+  background-color: var(--at-white1);
+  color: var(--at-black1);
+}
+
+/* =========================================
+   HEADER & NAVBAR REFINEMENTS (Smaller size)
+   ========================================= */
+
+.ra-header-content {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+.brand-logo img {
+  max-width: 150px;
+  /* Reducing logo size slightly */
+  transition: all 0.3s ease;
+}
+
+#main-nav>li>a {
+  padding: 10px 15px !important;
+  /* Reducing horizontal and vertical padding for menu items */
+  font-size: 15px !important;
+}
+
+#main-nav li a i {
+  margin-left: 5px;
+  font-size: 12px;
+  vertical-align: middle;
+  opacity: 0.8;
+}
+
+.txa_sticky_header .ra-header-content {
+  padding-top: 5px !important;
+  padding-bottom: 5px !important;
+}
+
+/* =========================================
+   SIMPLE NAVBAR RESET (Removing pill look)
+   ========================================= */
+
+.header_style_three {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.ra-header-content {
+  background: #ffffff !important;
+  /* Solid white for maximum contrast */
+  border-bottom: 1px solid #eeeeee;
+  padding: 15px 50px !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Sticky Header specific simple look */
+.txa_sticky_header.sticky-fixed .ra-header-content {
+  background: #ffffff !important;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.txa_sticky_header.sticky-fixed #main-nav>li>a {
+  color: #000000 !important;
+}
+
+/* Navbar: solid deep blue, no gradient */
+#main-nav>li>a {
+  color: #01042F !important;
+  -webkit-text-fill-color: #01042F !important;
+  background: none !important;
+  background-image: none !important;
+  font-weight: 700;
+}
+
+/* Hover: slightly lighter deep blue */
+#main-nav>li>a:hover,
+#main-nav>li.current-menu-item>a {
+  color: #007AC2 !important;
+  -webkit-text-fill-color: #007AC2 !important;
+  background: none !important;
+}
+
+/* Icons match the text color */
+#main-nav li a i {
+  margin-left: 8px;
+  font-size: 14px !important;
+  color: #01042F !important;
+  -webkit-text-fill-color: #01042F !important;
+  opacity: 1 !important;
+  display: inline-block !important;
+}
+
+/* Remove CTA/Search for a truly simple look if desired, 
+   but for now just cleaning them up */
+.ra-header-action {
+  gap: 20px;
+}
+
+.header-cta,
+.header-search {
+  display: none !important;
+  /* Hiding complex elements for 'simple' navbar */
+}
+
+/* =========================================
+   HERO ROBOT IMAGE ADJUSTMENTS
+   ========================================= */
+
+.at-hero3-img img {
+  max-width: 60% !important;
+  /* Restored to original perfect size */
+  height: auto !important;
+  margin-left: auto;
+  /* margin-top: 80px !important; Pushed down to clear the header */
+  display: block;
+}
+
+@media (max-width: 991px) {
+  .at-hero3-img img {
+    max-width: 70% !important;
+    margin: 0 auto;
+  }
+}
