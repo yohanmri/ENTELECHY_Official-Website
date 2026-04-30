@@ -36,6 +36,15 @@
                 'visibility': 'visible',
                 'transform': 'translate(0,0)'
             });
+            $('.at-hero3-img img').css({
+                'opacity': '1',
+                'visibility': 'visible',
+                'transform': 'none'
+            });
+            $('.at-hero3-slider').css({
+                'opacity': '1',
+                'visibility': 'visible'
+            });
         }, 1500);
 
     });
